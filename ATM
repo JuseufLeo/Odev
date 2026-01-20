@@ -1,1 +1,55 @@
+import java.util.Scanner;
+
+public class atm {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+
+        String userName, password;
+        int right = 3;
+        int balance = 20000;
+        int select;
+
+        while (right > 0){
+            System.out.print("Enter your userName: ");
+            userName = sc.nextLine();
+            System.out.print("Enter your password: ");
+            password = sc.nextLine();
+
+            if (userName.equals("aslan") && password.equals("leo")) {
+                System.out.println("Sisteme Giriş Yaptınız.");
+                do {
+                    System.out.println("1-Para Yatırma\n 2-Para Çekme\n 3-Bakiye Sorgulama\n 4-Çıkış Yap.");
+                    System.out.print("Lütfen Yapmak İstediğiniz İşlemi Seçiniz : ");
+                    select = sc.nextInt();
+                    if (select == 1) {
+                        System.out.println("Yatırmak İstediğiniz Miktarı Giriniz : ");
+                        int price = sc.nextInt();
+                        balance = balance + price;
+                    }else if (select == 2) {
+                        System.out.println("Lütfen Çekmek İstediğiniz Para Miktarını Giriniz : ");
+                        int price = sc.nextInt();
+                        if (price > balance) {
+                            System.out.println("Bakiye Yetersiz. Lütfen Tekrar Deneyiniz.");
+                        }else {
+                            balance = balance - price;
+                        }
+                    }else if (select == 3) {
+                        System.out.println("Bakiyeniz : " + balance);
+                    }
+                } while (select != 4);
+                System.out.println("Sistemden Çıkış Yaptınız.");
+                break;
+            }else {
+                right--;
+                System.out.println("Hatalı Kullanıcı Adı Veya Şifre. Lütfen Tekrar Deneyiniz. Kalan Hakkınız : " + right );
+                if (right == 0) {
+                    System.out.println("Kartınız Bloke Edilmiştir. Bankanız İle İletişime Geçiniz.");
+                }else {
+                    System.out.println("Kalan Hakkınız : " + right);
+                }
+            }
+        }
+
+    }
+}
 
